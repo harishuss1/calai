@@ -16,21 +16,22 @@ that looks off, and save it to **Supabase**. No accounts, no login — it's just
 ## 1. Clone & install
 
 ```bash
-git clone <your-repo-url> calai
+git clone https://github.com/harishuss1/calai.git
 cd calai
 npm install
 ```
 
-> Developed and run on **Windows**. All paths/commands are cross-platform. The app is tested
-> in the Expo **web** preview; an iOS build is done later via **EAS Build** (no Mac required).
+> Works on **Windows** and **macOS** — all commands below are cross-platform. You'll need
+> **Node.js (LTS)** installed (`brew install node` on macOS, or [nodejs.org](https://nodejs.org)).
+> You can preview in the browser (`--web`) or run on a real device with **Expo Go** (see §4).
 
 ## 2. Configure environment variables
 
 Copy the example file and fill in your own keys:
 
 ```bash
-copy .env.example .env   # Windows (PowerShell/CMD)
-# or:  cp .env.example .env
+cp .env.example .env       # macOS / Linux
+copy .env.example .env     # Windows (PowerShell/CMD)
 ```
 
 Then edit `.env`:
@@ -44,7 +45,9 @@ EXPO_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 - **Gemini key** — from [Google AI Studio](https://aistudio.google.com/app/apikey).
 - **Supabase URL & anon key** — Supabase dashboard → Project Settings → API.
 
-> `.env` is git-ignored and must never be committed. Only `.env.example` is tracked.
+> `.env` is git-ignored and must never be committed — only `.env.example` is tracked. This also
+> means your keys **don't** travel through `git clone`: on a new machine (e.g. moving from
+> Windows to a Mac), recreate `.env` and paste the same key values in.
 
 ## 3. Set up Supabase
 
@@ -64,9 +67,24 @@ In your Supabase project: **SQL Editor → New query**, paste the contents of
 ## 4. Run the app
 
 ```bash
-npx expo start          # then press w (web), or scan the QR with Expo Go
+npx expo start          # starts Metro + shows a QR code
 npx expo start --web    # open the browser preview directly
 ```
+
+From the running dev server, press `w` for the web preview, or scan the QR code to run on a
+phone (next section).
+
+### Run on your phone (Expo Go)
+
+1. Install **Expo Go** on your phone (App Store / Play Store).
+2. Make sure the phone and computer are on the **same Wi-Fi network**.
+3. Run `npx expo start`, then scan the QR code:
+   - **iPhone** — open the **Camera** app, point it at the QR, tap the Expo banner.
+   - **Android** — open **Expo Go** → "Scan QR code".
+4. The app loads on your device and hot-reloads as you edit.
+
+> On locked-down / corporate Wi-Fi where the phone can't reach the dev server, use
+> `npx expo start --tunnel` instead (slightly slower, but routes around network restrictions).
 
 Type-check at any time:
 
