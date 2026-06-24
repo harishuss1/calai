@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "CalAI",
+    "slug": "calai",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "calai",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.calai.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "CalAI needs camera access so you can photograph your meals for analysis.",
+        "NSPhotoLibraryUsageDescription": "CalAI needs photo library access so you can choose meal photos to analyze."
+      }
+    },
+    "android": {
+      "package": "com.calai.app"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "CalAI needs photo library access so you can choose meal photos to analyze.",
+          "cameraPermission": "CalAI needs camera access so you can photograph your meals for analysis."
+        }
+      ],
+      "expo-asset",
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
